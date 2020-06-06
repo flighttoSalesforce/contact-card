@@ -11,13 +11,13 @@ export default class ContactCardLWC extends LightningElement {
 
     addClass(event){
         let index = event.currentTarget.dataset.rowIndex;
-        let draggableElement = this.template.querySelector('[data-id="' + index + '"]');
+        let flipElement = this.template.querySelector('[data-id="' + index + '"]');
         draggableElement.classList.add('class1');
     }
 
     removeClass(event){
         let index = event.currentTarget.dataset.rowIndex;
-        let draggableElement = this.template.querySelector('[data-id="' + index + '"]');
+        let flipElement = this.template.querySelector('[data-id="' + index + '"]');
         draggableElement.classList.remove('class1');
     }
 }
