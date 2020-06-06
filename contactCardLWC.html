@@ -1,0 +1,41 @@
+<template>
+    <div style="background-color: white;" class="slds-p-around_medium">
+        <lightning-tile label="Contact Directory" type="media">
+            <lightning-icon slot="media" icon-name="standard:groups"></lightning-icon>
+            <p class="slds-truncate" title="contacts">Contact related to Selected Accounts</p>
+        </lightning-tile>
+        <div class="slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                    <lightning-record-edit-form record-id={recordId} object-api-name="Contact">
+                        <lightning-input-field field-name="AccountId" variant="label-hidden" onchange={handleAccountId}></lightning-input-field>
+                    </lightning-record-edit-form>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        <template if:true={contactData.data}>
+            <div class="slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                <lightning-layout multiple-rows>
+                    <template for:each={contactData.data} for:item="item" for:index="index">
+                        <lightning-layout-item key={item.Id} size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                            <div class="flip-card">
+                                <div  class="flip-card-inner" key={item.Id} data-row-index={item.Id} data-id={item.Id} onmouseover={addClass} onmouseout={removeClass}>
+                                    <div class="flip-card-front">
+                                        <img src="https://www.w3schools.com/w3css/img_avatar3.png" alt="Avatar" style="width:200px;height:200px;">
+                                        <div class="slds-text-color_destructive">{item.Name}</div>
+                                    </div>
+                                    <div class="flip-card-back">
+                                       <p class="slds-p-around_x-small"><text class="slds-text-title_caps" style="text-align: center;">{item.Name}</text></p>
+                                        <p class="slds-p-around_x-small">Title: {item.Title}</p>
+                                        <p class="slds-p-around_x-small">Email: {item.Email}</p>
+                                        <p class="slds-p-around_x-small">Department: {item.Department}</p>
+                                    </div>
+                                </div>
+                            </div> 
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>
+        </template>
+    </div>
+</template>
